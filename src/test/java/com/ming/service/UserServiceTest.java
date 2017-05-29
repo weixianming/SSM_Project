@@ -1,6 +1,9 @@
 package com.ming.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,4 +21,27 @@ public class UserServiceTest extends SpringTestCase {
 		User user = userService.selectUserById(2);
 		logger.debug("查找结果"+user);
 	}
+	
+	@Test
+	public void addUser(){
+		User u = new User();
+		u.setUserName("xianming1");
+		u.setUserPassword("123114");
+		u.setUserEmail("adasda@da1dsa");
+		userService.addUser(u);
+	}
+	
+	@Test
+	public void list(){
+		List<User> list = userService.listAllUser();
+		for(User u:list){
+			System.out.println(u.getUserName());
+		}
+	}
+	
+	@Test
+	public void delete(){
+		userService.deleteUser(15);
+	}
+	
 }
